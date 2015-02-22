@@ -17,7 +17,7 @@ total=0
 calle=''
 contador=1
 radiotierra=6371000
-constante=pi/180
+gtor=pi/180
 
 #Listar todas las direcciones de los puntos limpios de Málaga
 print("\nDirecciones de puntos limpios:")
@@ -50,17 +50,20 @@ for punto in docu["features"]:
     elemento=punto["properties"]["elemento"]
     print("%d. %s"%(contador, elemento))
     contador=contador+1
-seleccion=raw_input("Introduce el nombre del punto limpio: ")
+seleccion=raw_input("\nIntroduce el nombre del punto limpio: ")
 for punto in docu["features"]:
-    if elemento.lower() == seleccion.lower():
-        lat1=punto["properties"]["latitud"]
-        long1=punto["properties"]["longitud"]
+    if punto["properties"]["elemento"].lower() == seleccion.lower():
+        lat1=punto["geometry"]["coordinates"][1]
+        long1=punto["geometry"]["coordinates"][0]
+
+print("\nPuntos limpios cercanos: ")
 for punto in docu["features"]:
-    lat2=punto["properties"]["latitud"]
-    long2=punto["properties"]["longitud"]
+    elemento=elemento=punto["properties"]["elemento"]
+    lat2=punto["geometry"]["coordinates"][1]
+    long2=punto["geometry"]["coordinates"][0]
     #Fórmula de haversine, para calcular distantia entre dos puntos
-    diferencia=2*radiotierra*asin(sqrt(sin(constante*(lat2-lat1)/2)**2 + cos(constante*lat1)*cos(cconstante*lat2)*sin(cconstante*(long2-long1)/2)**2))
-    if distancia < 100:
-        
+    diferencia=2*radiotierra*asin(sqrt(sin(gtor*(lat2-lat1)/2)**2+cos(gtor*lat1)*cos(gtor*lat2)*sin(gtor*(long2-long1)/2)**2))
+    if diferencia < 100 and diferencia != 0:
+        print("%s, a %0.2f metros"%(elemento, diferencia))
     
 f.close
