@@ -4,6 +4,7 @@
 
 #Funciones
 import json
+from math import sin,cos,sqrt,asin,pi
 
 #Variables
 f=open("ecopuntos.json","r")
@@ -14,6 +15,9 @@ latitud=''
 longitud=''
 total=0
 calle=''
+contador=1
+radiotierra=6371000
+constante=pi/180
 
 #Listar todas las direcciones de los puntos limpios de Málaga
 print("\nDirecciones de puntos limpios:")
@@ -40,4 +44,23 @@ for punto in docu["features"]:
     if calle.lower() in punto["properties"]["direccion"].lower():
         print("Punto:%s (%s)"%(punto["properties"]["elemento"], punto["properties"]["direccion"]))
 
+#Muestra todos los puntos limpios y pide al usuario que elija uno, posteriormente mostrará todos los puntos limpios a 100m.
+print("\nPuntos limpios:")
+for punto in docu["features"]:
+    elemento=punto["properties"]["elemento"]
+    print("%d. %s"%(contador, elemento))
+    contador=contador+1
+seleccion=raw_input("Introduce el nombre del punto limpio: ")
+for punto in docu["features"]:
+    if elemento.lower() == seleccion.lower():
+        lat1=punto["properties"]["latitud"]
+        long1=punto["properties"]["longitud"]
+for punto in docu["features"]:
+    lat2=punto["properties"]["latitud"]
+    long2=punto["properties"]["longitud"]
+    #Fórmula de haversine, para calcular distantia entre dos puntos
+    diferencia=2*radiotierra*asin(sqrt(sin(constante*(lat2-lat1)/2)**2 + cos(constante*lat1)*cos(cconstante*lat2)*sin(cconstante*(long2-long1)/2)**2))
+    if distancia < 100:
+        
+    
 f.close
