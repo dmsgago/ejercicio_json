@@ -19,10 +19,15 @@ for punto in docu["features"]:
     print("\nElemento: %s\nDireccion: %s"%(elemento, direccion))
 
 #Lista los puntos limpios y genera un enlace con su ubicacion en OpenStreetMap
+print("\nUbicaciones de los puntos limpios:")
 for punto in docu["features"]:
     elemento=punto["properties"]["elemento"]
     latitud=punto["properties"]["latitud"]
     longitud=punto["properties"]["longitud"]
     print("\nElemento: %s\nUbicacion: http://www.openstreetmap.org/#map=15/%s/%s"%(elemento, latitud, longitud))
+
+#Muestra el total de puntos limpios en Málaga
+total=len(docu["features"])
+print("\nTotal de puntos limpios: %d"%total)
 
 f.close
