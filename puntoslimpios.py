@@ -15,9 +15,10 @@ latitud=''
 longitud=''
 total=0
 calle=''
-contador=1
+ident=''
 radiotierra=6371000
 gtor=pi/180
+encontrado=False
 
 #Listar todas las direcciones de los puntos limpios de Málaga
 print("\nDirecciones de puntos limpios:")
@@ -47,14 +48,19 @@ for punto in docu["features"]:
 #Muestra todos los puntos limpios y pide al usuario que elija uno, posteriormente mostrará todos los puntos limpios a 100m.
 print("\nPuntos limpios:")
 for punto in docu["features"]:
+    ident=punto["id"]
     elemento=punto["properties"]["elemento"]
-    print("%d. %s"%(contador, elemento))
-    contador=contador+1
-seleccion=raw_input("\nIntroduce el nombre del punto limpio: ")
+    print("%s. %s"%(ident, elemento))
+seleccion=raw_input('\nIntroduce el identificdor del punto limpio ["ecoPuntos.X"]: ')
 for punto in docu["features"]:
-    if punto["properties"]["elemento"].lower() == seleccion.lower():
+    ident=punto["id"]
+    if seleccion.lower() == ident.lower():
         lat1=punto["geometry"]["coordinates"][1]
         long1=punto["geometry"]["coordinates"][0]
+        encontrado=True
+if not encontrado:
+    print('Punto limpio no encontrado')
+    exit()
 
 print("\nPuntos limpios cercanos: ")
 for punto in docu["features"]:
