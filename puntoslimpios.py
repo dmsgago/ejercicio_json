@@ -27,7 +27,7 @@ for punto in docu["features"]:
     direccion=punto["properties"]["direccion"]
     print("\nElemento: %s\nDireccion: %s"%(elemento, direccion))
 
-raw_input('Haga clic para continuar...')
+raw_input('\n(Haga clic para continuar...)')
 
 #Lista los puntos limpios y genera un enlace con su ubicacion en OpenStreetMap
 print("\nUbicaciones de los puntos limpios:")
@@ -37,13 +37,13 @@ for punto in docu["features"]:
     longitud=punto["properties"]["longitud"]
     print("\nElemento: %s\nUbicacion: http://www.openstreetmap.org/#map=15/%s/%s"%(elemento, latitud, longitud))
 
-raw_input('(\nHaga clic para continuar...)')
+raw_input('\n(Haga clic para continuar...)')
     
 #Muestra el total de puntos limpios en Málaga
 total=len(docu["features"])
 print("\nTotal de puntos limpios: %d"%total)
 
-raw_input('(\nHaga clic para continuar...)')
+raw_input('\n(Haga clic para continuar...)')
 
 #Pide el nombre de una calle y muestra los puntos limpios que hay en ella
 calle=raw_input('\nBusqueda de puntos limpios por calle: ')
@@ -51,7 +51,7 @@ for punto in docu["features"]:
     if calle.lower() in punto["properties"]["direccion"].lower():
         print("Punto:%s (%s)"%(punto["properties"]["elemento"], punto["properties"]["direccion"]))
 
-raw_input('(\nHaga clic para continuar...)')
+raw_input('\n(Haga clic para continuar...)')
         
 #Muestra todos los puntos limpios y pide al usuario que elija uno, posteriormente mostrará todos los puntos limpios a 100m.
 print("\nPuntos limpios:")
