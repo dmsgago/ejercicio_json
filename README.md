@@ -1,5 +1,5 @@
 # ejercicio_json
-Generar un programa en Python que:
+##Generar un programa en Python que:
 1. Liste todas las direcciones de los puntos limpios de la provincia de Málaga.
 2. Muestre el tipo de punto limpio y muestra el mapa de la ubicación utilizando OpenStreetMap.
 3. Muestre el número de puntos limpios en la provincia.
